@@ -54,8 +54,7 @@ header {
     align-items: center;
     text-align: center;
     display: inline-block;
-    vertical-align: middle;
-    position: absolute;    
+    vertical-align: middle;  
 }
 
 .isonappi { /*esim. Indexin Aloita-nappi*/
@@ -70,8 +69,7 @@ header {
       border-radius: 8px;
       width: 335px;
       height: 60px;
-      position:absolute;
-      left: 50%;
+      margin-left: 35%;
       margin-top: 350px;
       cursor: pointer;
       transition: 0.15s;
