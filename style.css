@@ -1,5 +1,5 @@
 *{
-    padding: 20px;
+    padding: 10px;
 }
 body {
     background-image:  url("images/backswirl.png");
@@ -32,10 +32,11 @@ header {
     left: 50%;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 0;
 }
 
 .div-index-textbox { /*Indexin textbox*/
-    display:inline-block;
+    /*display:inline-block;
     background-color: #F4F3F6;
     position: absolute;
     width: 70%;
@@ -54,7 +55,24 @@ header {
     align-items: center;
     text-align: center;
     display: inline-block;
-    vertical-align: middle;  
+    vertical-align: middle;  */
+
+    /* FONT ADJUSTMENTS */
+    font-family: 'Gudea', sans-serif;
+    font-style: normal;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #060710;
+    text-align: center;
+
+    /* BORDER ADJUSMENTS */
+    border-radius: 8px;
+
+    background-color: #F4F3F6;
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .isonappi { /*esim. Indexin Aloita-nappi*/
@@ -69,8 +87,6 @@ header {
       border-radius: 8px;
       width: 335px;
       height: 60px;
-      margin-left: 35%;
-      margin-top: 350px;
       cursor: pointer;
       transition: 0.15s;
       
@@ -78,4 +94,13 @@ header {
 
 .isonappi:hover {
     opacity: 80%;
+}
+
+.begin {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+
+    /*background-color: pink;*/
 }
