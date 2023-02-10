@@ -1,11 +1,137 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Soveltuvuustesti</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        
-    </body>
+  <head>
+    <title>Soveltuvuustesti</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="question-container" id="questions">
+      <h2 id="question">Question here</h2>
+      <div class="options">
+        <ul>
+          <li>
+            <input type="radio" name="option" id="a" class="option">
+            <label for="a" id="a_text">Option a</label>
+          </li>
+          <li>
+            <input type="radio" name="option" id="b" class="option">
+            <label for="b" id="b_text">Option b</label>
+          </li>
+          <li>
+            <input type="radio" name="option" id="c" class="option">
+            <label for="c" id="c_text">Option c</label>
+          </li>
+          <li id="option_d">
+            <input type="radio" name="option" id="d" class="option">
+            <label for="d" id="d_text">Option d</label>
+          </li>
+        </ul>
+      </div>
+      <button id="back">Takaisin</button>
+      <button id="next">Seuraava</button>
+    </div>
+    
+
+    <script>
+      const questionData = [
+        {
+          question: "Haluan opiskella alaa, jossa työllistyn alalle heti valmistumisen jälkeen.", 
+          a: "Ei niin väliä",
+          b: "Mukavaahan se olisi",
+          c: "Ehdottomasti!",
+          d: "Haluaisin työskennellä alalla jo opiskellessani"
+        },
+        {
+          question: "Kuinka tärkeä palkka on sinulle?",
+          a: "Palkkaa tärkeämpää on työn mielekkyys",
+          b: "Tasaiset tulot, jolla voi elää ja niistä jää myös säästöön",
+          c: "Miljonäärinä olisi mukava elellä",
+          d: "none"
+        }
+      ];
+      
+      /* linking the HTML elements to variables */
+      const questionnaire = document.getElementById("questions");
+      const optionElements = document.querySelectorAll(".option");
+      const questionElement = document.getElementById("question")
+
+      /* the option texts */
+      const a_text = document.getElementById("a_text");
+      const b_text = document.getElementById("b_text");
+      const c_text = document.getElementById("c_text");
+      const d_text = document.getElementById("d_text");
+
+      /* the buttons */
+      const backButton = document.getElementById("back");
+      const nextButton = document.getElementById("next");
+
+      //the index of the current question visible
+      currentQuestion = 0;
+      userChoices = [];
+
+      loadQuestion();
+
+      function loadQuestion() {
+        unSelectAll();
+        const data = questionData[currentQuestion];
+        questionElement.innerHTML = data.question;
+        a_text.innerHTML = data.a;
+        b_text.innerHTML = data.b;
+        c_text.innerHTML = data.c;
+        if (data.d != "none") {
+          d_text.innerHTML = data.d;
+          document.getElementById("option_d").style.display = "inherit";
+        } else {
+          document.getElementById("option_d").style.display = "none";
+        }
+      }
+
+      function getSelected() {
+        let answer;
+        optionElements.forEach(function (optionElem){
+          if (optionElem.checked) {
+            answer = optionElem.id;
+          }
+        });
+        console.log(answer);
+        return answer
+      }
+
+      function unSelectAll() {
+        optionElements.forEach(function (optionElem){
+          optionElem.checked = false
+        });
+      }
+
+      function switchToSubmit() {
+        //tee joskus :I)))))))
+        //essentially muuta next button submitiksi
+        //laske (vielä olemattomat) pisteet yms
+      }
+
+      nextButton.addEventListener("click", () => {
+        const answer = getSelected()
+        //check if an option was chosen
+        if (answer) {
+          userChoices[currentQuestion] = answer;
+          console.log(userChoices);
+          //increment to next question
+          currentQuestion++;
+          //check if more questions remain
+          if (currentQuestion < questionData.length) {
+            loadQuestion();
+          } else if (currentQuestion == questionData.length-1 ) {
+            //is where we'd switch to "submit"
+          }
+        }
+      })
+
+      backButton.addEventListener("click", () => {
+        currentQuestion--;
+        loadQuestion();
+      })
+      
+    </script>
+  </body>
 </html>
