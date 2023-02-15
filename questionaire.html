@@ -3,32 +3,36 @@
   <head>
     <title>Soveltuvuustesti</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!--style.css-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> <!--Takaisin-napin nuoli-->
+  
   </head>
   <body>
+    <div class="questions-yla"><button id="back" class="material-symbols-outlined">arrow_back</button>
+       <p class="question-title">ICT-alan soveltuvuustesti</p></div>
+    
     <div class="question-container" id="questions">
-      <h2 id="question" class="white-font">Question here</h2>
+      <h2 id="question" class="question">Question here</h2>
       <div class="options">
         <ul>
           <li>
             <input type="radio" name="option" id="a" class="option">
-            <label for="a" id="a_text" class="white-font">Option a</label>
+            <label for="a" id="a_text">Option a</label>
           </li>
           <li>
             <input type="radio" name="option" id="b" class="option">
-            <label for="b" id="b_text" class="white-font">Option b</label>
+            <label for="b" id="b_text">Option b</label>
           </li>
           <li>
             <input type="radio" name="option" id="c" class="option">
-            <label for="c" id="c_text" class="white-font">Option c</label>
+            <label for="c" id="c_text">Option c</label>
           </li>
           <li id="option_d">
             <input type="radio" name="option" id="d" class="option">
-            <label for="d" id="d_text" class="white-font">Option d</label>
+            <label for="d" id="d_text">Option d</label>
           </li>
         </ul>
       </div>
-      <button id="back" class="isonappi">Takaisin</button>
       <button id="next" class="isonappi">Seuraava</button>
     </div>
     

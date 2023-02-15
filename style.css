@@ -71,22 +71,68 @@ header {
       height: 60px;
       cursor: pointer;
       transition: 0.15s;
+      margin-left: 50%;
+      margin-top: 2.5rem;
+      transform: translate(-50%, -50%);
+      
 }
 
 .isonappi:hover {
     opacity: 80%;
 }
 
-.begin {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 2.5rem;
-    margin-left: 50%;
-    transform: translate(-50%, -50%);
-    /*background-color: pink;*/
+/*----------------------------------QUESTIONS-------------------------------------*/
+
+.options {
+    color: #060710;
+    font-family: 'Gudea', sans-serif;
+    padding: 16px;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+
 }
 
+.question {
+    color: #E3E3E3;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-size: 20px;
+}
+
+
+ul {
+    list-style: none;
+}
+
+li {
+    background-color: #F4F3F6;
+    padding: 20px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.material-symbols-outlined {
+    border-radius: 50%;
+}
+
+.material-symbols-outlined:hover {
+    opacity: 80%;
+}
+
+.question-title {
+   color: #E3E3E3;
+   font-family: 'Gudea', sans-serif;
+   font-size: 20px;
+}
+
+.questions-yla {
+    height: px;
+    /*tää on div joka sisältää questionnairen takaisin-napin ja tekstin ICT-alan soveltuvuustesti*/
+    /*en oo varma tarvitaanko mutta hän nyt on olemassa toistaiseksi*/
+}
 /*-------------------------------------RESULTS-----------------------------------*/
 
 .results-title {
@@ -117,8 +163,4 @@ header {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 0;
-}
-
-.white-font {
-    color:#E3E3E3
 }
