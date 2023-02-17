@@ -119,6 +119,7 @@
       loadQuestion();
 
       function loadQuestion() {
+        console.log(currentQuestion + " / " + questionData.length);
         unSelectAll();
         const data = questionData[currentQuestion];
         questionElement.innerHTML = data.question;
@@ -140,7 +141,6 @@
             answer = optionElem.id;
           }
         });
-        console.log(answer);
         return answer
       }
 
@@ -151,9 +151,8 @@
       }
 
       function switchToSubmit() {
-        //tee joskus :I)))))))
-        //essentially muuta next button submitiksi
-        //laske (vielä olemattomat) pisteet yms
+        nextButton.innerHTML = "Tuloksiin!";
+        window.location="results.html";
       }
 
       nextButton.addEventListener("click", () => {
@@ -161,14 +160,17 @@
         //check if an option was chosen
         if (answer) {
           userChoices[currentQuestion] = answer;
-          console.log(userChoices);
+          
           //increment to next question
           currentQuestion++;
           //check if more questions remain
-          if (currentQuestion < questionData.length) {
+          if (currentQuestion == questionData.length-1 ) {
+            nextButton.innerHTML = "Tuloksiin!";
             loadQuestion();
-          } else if (currentQuestion == questionData.length-1 ) {
-            //is where we'd switch to "submit"
+          } else if (currentQuestion < questionData.length) {
+            loadQuestion();
+          } else {
+            window.location="results.html";
           }
         }
       })
