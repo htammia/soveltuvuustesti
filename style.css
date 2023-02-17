@@ -77,13 +77,14 @@ header {
       background-color:#7A4FC7; 
       border: none;
       color:#EDE8E2;
+      text-align: center;
       font-family: 'Open Sans', sans-serif;
       font-size: 16px;
       font-style: italic;
       font-weight: 700;
       line-height: 20px;
       border-radius: 8px;
-      width: 264px;
+      width: clamp(10rem, 7rem + 20vw, 16.5rem);
       height: 60px;
       cursor: pointer;
       transition: 0.15s;
