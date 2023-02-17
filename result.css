@@ -40,14 +40,20 @@
     height: auto;
     margin: 0 auto;
     border-radius: 8px;
-    font-size: 15px; 
+    align-items: center;
 }
 
 .result-item {
     border: 1px solid #BFA4F0;
     margin-top: 15px;
     padding: 20px;
+    background-color: #F4F3F6;
+    border-radius: 8px;
+    font-size: 15px;
+    align-items: center;
+    
 }
+
 
 .result-title {
     display: flex;
@@ -55,6 +61,7 @@
     justify-content: space-between;
     padding: 10px;
     cursor: pointer;
+    
   }
   
 .result-title h2 {
