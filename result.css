@@ -1,0 +1,100 @@
+/*-------------------------------------RESULTS-----------------------------------*/ 
+/*sivun iso otsikko*/
+.results-title {
+    color:#E3E3E3;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    font-size: clamp(0.50rem, 1rem + 4vw, 2.25rem);
+    line-height: 30px;
+    text-align: center;
+    margin-top: -40px;
+    left: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0;
+}
+
+/*toinen otsikko*/
+.first-result-title {
+    color:#E3E3E3;
+    font-family: 'Alegreya Sans', sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    font-size: clamp(0.4rem, 1rem + 2vw, 2rem);
+    line-height: 30px;
+    text-align: center;
+    margin-top: -40px;
+    left: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 0;
+}
+
+
+.result-items {
+    color: #060710;
+    font-family: 'Gudea', sans-serif;
+    padding: 16px;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+    font-size: 15px; 
+}
+
+.result-item {
+    border: 1px solid #BFA4F0;
+    margin-top: 15px;
+    padding: 20px;
+}
+
+.result-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+.result-title h2 {
+    margin: 0 auto;
+    color: #060710;
+  }
+  
+.arrow-icon {
+    border: solid #011470;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+  }
+  
+.result-content {
+    display:none;
+    padding: 10px;
+}
+  
+.result-item.result-content {
+    display: block;
+}
+  
+.kokeileuudestaan { /* result näkymän nappi*/
+    background-color:#F4F3F6; 
+    border-color: #F4F3F6;
+    color:#060710;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 20px;
+    border-radius: 8px;
+    width: clamp(10rem, 7rem + 20vw, 16.5rem);  
+    height: 60px;
+    cursor: pointer;
+    transition: 0.15s;
+    margin-left: 50%;
+    margin-top: 2.5rem;
+    transform: translate(-50%, -50%); 
+}
+    
