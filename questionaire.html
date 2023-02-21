@@ -186,5 +186,31 @@
       })
       
     </script>
+
+    <script> 
+
+      /*Changes the options background to purple when it is clicked */
+      const options = document.querySelectorAll('.option');
+      const lis = document.querySelectorAll('.options li');
+
+      for (let i = 0; i < options.length; i++) {
+        options[i].addEventListener('click', function() {
+          for (let j = 0; j < lis.length; j++) {
+            lis[j].style.backgroundColor = '';
+          }
+          const selectedOption = document.querySelector('input[name="option"]:checked');
+          const selectedLi = selectedOption.parentNode;
+          selectedLi.style.backgroundColor = '#7A4FC7';
+        });
+      }
+
+      /*When clicking next-button, options background is returned to default in next question*/
+      nextButton.addEventListener("click", function() {
+        lis.forEach(function(option) {
+        option.style.backgroundColor = "";
+        });
+      });
+
+    </script>
   </body>
 </html>
