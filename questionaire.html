@@ -211,6 +211,13 @@
         });
       });
 
+      /*When clicking back-button, options background is returned to default in previous question*/
+      backButton.addEventListener("click", function() {
+        lis.forEach(function(option) {
+        option.style.backgroundColor = "";
+        });
+      });
+
     </script>
   </body>
 </html>
