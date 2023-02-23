@@ -38,6 +38,182 @@
     
 
     <script>
+      const pointsToTT = [
+        {
+          //question 1
+          a: true,
+          b: true,
+          c: true,
+          d: true
+        }, 
+        {
+          //question 2
+          a: true,
+          b: true,
+          c: false,
+          d: false
+        },
+        {
+          //question 3
+          a: false,
+          b: true,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 4
+          a: false,
+          b: true,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 5
+          a: false,
+          b: true,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 6
+          a: false,
+          b: true,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 7
+          a: true,
+          b: true,
+          c: true,
+          d: false
+        },
+        {
+          //question 8
+          a: true,
+          b: true,
+          c: true,
+          d: false
+        }
+      ];
+
+      const pointsToETT = [
+      {
+          //question 1
+          a: true,
+          b: true,
+          c: true,
+          d: true
+        }, 
+        {
+          //question 2
+          a: true,
+          b: true,
+          c: false,
+          d: false
+        },
+        {
+          //question 3
+          a: true,
+          b: false,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 4
+          a: false,
+          b: false,
+          c: true,
+          d: false
+        }, 
+        {
+          //question 5
+          a: true,
+          b: false,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 6
+          a: true,
+          b: false,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 7
+          a: true,
+          b: true,
+          c: false,
+          d: false
+        },
+        {
+          //question 8
+          a: true,
+          b: true,
+          c: true,
+          d: false
+        }
+      ];
+
+      const pointsToTOL = [
+      {
+          //question 1
+          a: true,
+          b: true,
+          c: true,
+          d: true
+        }, 
+        {
+          //question 2
+          a: true,
+          b: true,
+          c: true,
+          d: false
+        },
+        {
+          //question 3
+          a: true,
+          b: false,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 4
+          a: false,
+          b: false,
+          c: true,
+          d: false
+        }, 
+        {
+          //question 5
+          a: true,
+          b: false,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 6
+          a: true,
+          b: false,
+          c: false,
+          d: false
+        }, 
+        {
+          //question 7
+          a: true,
+          b: true,
+          c: false,
+          d: false
+        },
+        {
+          //question 8
+          a: true,
+          b: true,
+          c: true,
+          d: false
+        }
+      ];
       const questionData = [
         {
           question: "Haluan opiskella alaa, jossa työllistyn alalle heti valmistumisen jälkeen.", 
@@ -113,8 +289,14 @@
       const nextButton = document.getElementById("next");
 
       //the index of the current question visible
-      currentQuestion = 0;
-      userChoices = [];
+      let currentQuestion = 0;
+      let userChoices = [];
+
+      const points = {
+        TT:0,
+        ETT:0,
+        TOL:0
+      };
 
       loadQuestion();
 
@@ -150,9 +332,57 @@
         });
       }
 
-      function switchToSubmit() {
-        nextButton.innerHTML = "Tuloksiin!";
-        window.location="results.html";
+      function calculatePoints() {
+
+        for (let i = 0; i < userChoices.length; i++) {
+          if (userChoices[i] == "a") {
+            if (pointsToTT[i].a) {
+              points.TT++;
+            }
+            if (pointsToETT[i].a) {
+              points.ETT++;
+            }
+            if (pointsToTOL[i].a) {
+              points.TOL++;
+            }
+          }
+            if (userChoices[i] == "b") {
+            if (pointsToTT[i].b) {
+              points.TT++;
+            }
+            if (pointsToETT[i].b) {
+              points.ETT++;
+            }
+            if (pointsToTOL[i].b) {
+              points.TOL++;
+            }
+          }
+            if (userChoices[i] == "c") {
+            if (pointsToTT[i].c) {
+              points.TT++;
+            }
+            if (pointsToETT[i].c) {
+              points.ETT++;
+            }
+            if (pointsToTOL[i].c) {
+              points.TOL++;
+            }
+          }
+          if (userChoices[i] == "d") {
+            if (pointsToTT[i].d) {
+              points.TT++;
+            }
+            if (pointsToETT[i].d) {
+              points.ETT++;
+            }
+            if (pointsToTOL[i].d) {
+              points.TOL++;
+            }
+          }
+        }
+        console.log("POINTS: tt: " + points.TT);
+        console.log("POINTS: ett: " + points.ETT);
+        console.log("POINTS: tol: " + points.TOL);
       }
 
       nextButton.addEventListener("click", () => {
@@ -170,6 +400,7 @@
           } else if (currentQuestion < questionData.length) {
             loadQuestion();
           } else {
+            calculatePoints();
             window.location="results.html";
           }
         }
