@@ -373,9 +373,10 @@ nextButton.addEventListener("click", () => {
   //check if an option was chosen
   if (answer) {
     userChoices[currentQuestion] = answer;
-   
+    
     //increment to next question
     currentQuestion++;
+    document.getElementById("progressBar").value =(currentQuestion / questionData.length) * 100;
     //check if more questions remain
     if (currentQuestion == questionData.length-1 ) {
       nextButton.innerHTML = "Tuloksiin!";
@@ -393,6 +394,7 @@ nextButton.addEventListener("click", () => {
 backButton.addEventListener("click", () => {
   if(currentQuestion > 0){
     currentQuestion--;
+    document.getElementById("progressBar").value =(currentQuestion / questionData.length) * 100;
     loadQuestion();
   }
   else{
