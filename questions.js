@@ -192,38 +192,38 @@ const pointsToTOL = [
   },
   {
     //question 3
-    a: true,
-    b: false,
-    c: false,
-    d: false
-  }, 
-  {
-    //question 4
     a: false,
     b: false,
     c: true,
     d: false
   }, 
   {
-    //question 5
+    //question 4
     a: true,
     b: false,
     c: false,
     d: false
   }, 
   {
-    //question 6
-    a: true,
+    //question 5
+    a: false,
     b: false,
-    c: false,
+    c: true,
+    d: false
+  }, 
+  {
+    //question 6
+    a: false,
+    b: false,
+    c: true,
     d: false
   }, 
   {
     //question 7
     a: true,
     b: true,
-    c: false,
-    d: false
+    c: true,
+    d: true
   },
   {
     //question 8
@@ -294,6 +294,7 @@ function unSelectAll() {
 }
 
 function calculateResults() {
+  let resultOrder;
 
   for (let i = 0; i < userChoices.length; i++) {
     if (userChoices[i] == "a") {
@@ -341,7 +342,7 @@ function calculateResults() {
       }
     }
 
-    const resultOrder = [
+    resultOrder = [
       {
         points: points.TOL,
         name: "tol"
@@ -358,13 +359,15 @@ function calculateResults() {
     resultOrder.sort((a,b) => {
       return b.points - a.points;
     });
-
-    return resultOrder;
   }
 
   console.log("POINTS: ett: " + points.ETT);
   console.log("POINTS: tol: " + points.TOL);
   console.log("POINTS: tt: " + points.TT);
+
+  console.log(resultOrder);
+
+  return resultOrder;
 }
 
 nextButton.addEventListener("click", () => {
