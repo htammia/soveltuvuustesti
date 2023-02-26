@@ -176,7 +176,7 @@ const pointsToETT = [
 ];
 
 const pointsToTOL = [
-{
+  {
     //question 1
     a: true,
     b: true,
@@ -248,7 +248,7 @@ const d_text = document.getElementById("d_text");
 
 /* the buttons */
 const backButton = document.getElementById("back");
-const nextButton = document.getElementById("next")
+const nextButton = document.getElementById("next");
 
 //the index of the current question visible
 let currentQuestion = 0;
