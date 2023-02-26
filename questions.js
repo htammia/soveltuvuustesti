@@ -235,9 +235,10 @@ const pointsToTOL = [
 ];
 
 /* linking the HTML elements to variables */
+const progressText = document.getElementById("progressText");
 const questionnaire = document.getElementById("questions");
 const optionElements = document.querySelectorAll(".option");
-const questionElement = document.getElementById("question")
+const questionElement = document.getElementById("question");
 
 /* the option texts */
 const a_text = document.getElementById("a_text");
@@ -247,7 +248,7 @@ const d_text = document.getElementById("d_text");
 
 /* the buttons */
 const backButton = document.getElementById("back");
-const nextButton = document.getElementById("next");
+const nextButton = document.getElementById("next")
 
 //the index of the current question visible
 let currentQuestion = 0;
@@ -372,7 +373,7 @@ nextButton.addEventListener("click", () => {
   //check if an option was chosen
   if (answer) {
     userChoices[currentQuestion] = answer;
-    
+   
     //increment to next question
     currentQuestion++;
     //check if more questions remain
