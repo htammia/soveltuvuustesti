@@ -1,7 +1,7 @@
 
 body {
     background-image:  url("images/backswirl.png");
-    width:auto;
+    
 }
 
 header {
@@ -102,23 +102,43 @@ header {
 .options {
     color: #060710;
     font-family: 'Gudea', sans-serif;
-    padding: 16px;
     width: 80%;
     height: auto;
-    margin: 0 auto;
     border-radius: 8px;
+    margin: 0 auto;
+    
 
+}
+
+.progress {
+    color: #F4F3F6;
+    
+    height: clamp(1.25rem, 1rem + 2vw, 2rem);
+    width: clamp(14rem, 2rem + 30vw, 26rem);
+}
+
+
+
+.progressBarDiv {
+    margin: 0 auto;
+    text-align: center;
+    
 }
 
 .question {
     color: #E3E3E3;
     font-family: 'Alegreya Sans', sans-serif;
     font-size: 20px;
+    text-align: center;
 }
 
+.question-container {
+    justify-content: center;
+}
 
 ul {
     list-style: none;
+    padding: 0;
 }
 
 li {
@@ -138,13 +158,12 @@ li {
     max-height: 300px;
     width: 90%;
     width: clamp(10rem, rem + 20vw, 20rem);
-    
-   
 }
-
 
 .material-symbols-outlined {
     border-radius: 50%;
+    padding: 6px;
+    width: 36px;
     border: none;
 }
 
@@ -156,14 +175,18 @@ li {
    color: #E3E3E3;
    font-family: 'Gudea', sans-serif;
    font-size: 20px;
-   
 }
 
 .questions-yla {
-    height: px;
-    
-    /*tää on div joka sisältää questionnairen takaisin-napin ja tekstin ICT-alan soveltuvuustesti*/
-    /*en oo varma tarvitaanko mutta hän nyt on olemassa toistaiseksi*/
+    display: flex;
+    justify-content: center;
 }
+
+.backdiv {
+    margin-top: 13px;
+    margin-right: 1rem;
+}
+
+
 
 
