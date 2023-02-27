@@ -44,12 +44,22 @@
 .result-item {
     border: 1px solid #BFA4F0;
     margin-top: 15px;
-    padding: 20px;
+    padding: 18px;
     background-color: #F4F3F6;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 14px;
     align-items: center;
     
+}
+
+@media only screen and (max-width: 600px){
+    .result-items {
+        width: 90%;
+    }
+    .result-item {
+        font-size: 70%;
+        padding: 15px;
+    }
 }
 
 
