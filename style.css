@@ -84,7 +84,6 @@ header {
       height: 60px;
       cursor: pointer;
       transition: 0.15s;
-     
 }
 
 .isonappi:hover {
@@ -129,11 +128,24 @@ li {
     border-radius: 8px;
     font-size: 20px;
     margin-top: 15px;
+    
+   
+    background-color: #F4F3F6;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 15px;
+    max-width: 600px;
+    max-height: 300px;
+    width: 90%;
+    width: clamp(10rem, rem + 20vw, 20rem);
+    
+   
 }
 
 
 .material-symbols-outlined {
     border-radius: 50%;
+    border: none;
 }
 
 .material-symbols-outlined:hover {
@@ -144,10 +156,12 @@ li {
    color: #E3E3E3;
    font-family: 'Gudea', sans-serif;
    font-size: 20px;
+   
 }
 
 .questions-yla {
     height: px;
+    
     /*tää on div joka sisältää questionnairen takaisin-napin ja tekstin ICT-alan soveltuvuustesti*/
     /*en oo varma tarvitaanko mutta hän nyt on olemassa toistaiseksi*/
 }
