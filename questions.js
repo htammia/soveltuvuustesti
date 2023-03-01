@@ -260,6 +260,17 @@ const points = {
   TOL:0
 };
 
+function disableNextButton(disable) {
+    if (disable == true) {
+        nextButton.disabled = true;
+        nextButton.style.opacity = "0.7"
+    }
+    else {
+        nextButton.disabled = false;
+        nextButton.style.opacity = "1";
+    }
+}
+
 loadQuestion();
 
 function loadQuestion() {
@@ -417,6 +428,7 @@ for (let i = 0; i < options.length; i++) {
     const selectedOption = document.querySelector('input[name="option"]:checked');
     const selectedLi = selectedOption.parentNode;
     selectedLi.style.backgroundColor = '#7A4FC7';
+    disableNextButton(false);
   });
 }
 
@@ -424,6 +436,7 @@ for (let i = 0; i < options.length; i++) {
 nextButton.addEventListener("click", function() {
   lis.forEach(function(option) {
   option.style.backgroundColor = "";
+  disableNextButton(true);
   });
 });
 
@@ -431,5 +444,8 @@ nextButton.addEventListener("click", function() {
 backButton.addEventListener("click", function() {
   lis.forEach(function(option) {
   option.style.backgroundColor = "";
+  disableNextButton(true);
   });
 });
+
+disableNextButton(true);
