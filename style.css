@@ -80,10 +80,11 @@ header {
       font-weight: 700;
       line-height: 20px;
       border-radius: 8px;
-      width: clamp(10rem, 7rem + 20vw, 16.5rem);
+      width: clamp(10rem, 5rem + 20vw, 16.5rem);
       height: 60px;
       cursor: pointer;
       transition: 0.15s;
+      margin: 5px;
 }
 
 .isonappi:hover {
@@ -94,10 +95,16 @@ header {
     margin: 0 auto;
     text-align: center;
     padding: 15px;
-   
 }
 
 /*----------------------------------QUESTIONS-------------------------------------*/
+
+.backAndNext {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 15px;
+}
 
 .options {
     color: #060710;
@@ -106,8 +113,6 @@ header {
     height: auto;
     border-radius: 8px;
     margin: 0 auto;
-    
-
 }
 
 .progress {
@@ -186,12 +191,3 @@ li {
     margin-top: clamp(1rem, 5vw, 3rem);
     
 }
-
-.backdiv {
-    margin-top: 13px;
-    margin-right: 1rem;
-}
-
-
-
-
