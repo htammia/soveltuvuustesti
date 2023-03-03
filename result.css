@@ -84,6 +84,10 @@
 .result-content {
     display:none;
     padding: 10px;
+    max-height: 300px; /*pitää varmaan kans säätää*/
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: left; /*tämä pitää miettiä oisko paras esim justify/center/left/joku muu*/
 }
   
 .result-item.result-content {

@@ -17,7 +17,8 @@ ett = {
       + "teollisuuden alalle ja ovet maailmalle ovat auki.<br>"
       + "<br>Jos kiinnostuit, kysy ihmeessä lisää. "
       + "Voit aloittaa keskustelun esimerkiksi kysymyksellä minkälaista on opiskelu "
-      + "elektroniikan ja tietoliikennetekniikan tutkinto-ohjelmassa"
+      + "elektroniikan ja tietoliikennetekniikan tutkinto-ohjelmassa",
+      link: "https://www.oulu.fi/fi/hae/kandidaattiohjelmat/elektroniikka-ja-tietoliikennetekniikka"
 }
 tt = {
     name: "TIETOTEKNIIKAN TUTKINTO-OHJELMA",
@@ -38,7 +39,8 @@ tt = {
       + "uusien teknologioiden kehittäminen.<br>"
       + "<br>Jos kiinnostuit, kysy ihmeessä lisää. "
       + "Voit aloittaa keskustelun esimerkiksi kysymyksellä minkälaista on "
-      + "opiskelu Tietotekniikan tutkinto-ohjelmassa."
+      + "opiskelu Tietotekniikan tutkinto-ohjelmassa.",
+      link: "https://www.oulu.fi/fi/hae/kandidaattiohjelmat/tietotekniikka"
   }
 tol = {
     name: "TIETOJENKÄSITTELYTIETEEN TUTKINTO-OHJELMA",
@@ -58,17 +60,21 @@ tol = {
       + "mutta työpaikka voi löytyä mistä tahansa organisaatiosta, sillä ohjelmistot "
       + "ovat levinneet kaikkialle.<br>"
       + "<br>Jos kiinnostuit, kysy ihmeessä lisää. Voit aloittaa keskustelun esimerkiksi "
-      + "kysymyksellä minkälaista on opiskelu Tietojenkäsittelytieteen tutkinto-ohjelmassa."
+      + "kysymyksellä minkälaista on opiskelu Tietojenkäsittelytieteen tutkinto-ohjelmassa.",
+      link: "https://www.oulu.fi/fi/hae/kandidaattiohjelmat/tietojenkasittelytiede"
   }
 
-//linkin the html elements
+//linking the html elements
 const winner = document.getElementById("winner-title")
 const firstTitle = document.getElementById("first-title");
 const firstDscr = document.getElementById("first-description");
+const firstLink = document.getElementById("first-link");
 const secondTitle = document.getElementById("second-title");
 const secondDscr = document.getElementById("second-description");
+const secondLink = document.getElementById("second-link");
 const thirdTitle = document.getElementById("third-title");
 const thirdDscr = document.getElementById("third-description");
+const thirdLink = document.getElementById("third-link");
 
 const results = getOrder();
 setTexts();
@@ -78,36 +84,45 @@ function setTexts() {
     winner.innerHTML = ett.name;
     firstTitle.innerHTML = "1. " + ett.title;
     firstDscr.innerHTML = ett.description;
+    firstLink.innerHTML = ett.link;
   } else if (results[0] == "tt") {
     winner.innerHTML = tt.name;
     firstTitle.innerHTML = "1. " + tt.title;
     firstDscr.innerHTML = tt.description;
+    firstLink.innerHTML = tt.link;
   } else {
     winner.innerHTML = tol.name;
     firstTitle.innerHTML = "1. " + tol.title;
     firstDscr.innerHTML = tol.description;
+    firstLink.innerHTML = tol.link;
   }
 
   if (results[1] == "ett") {
     secondTitle.innerHTML = "2. " + ett.title;
     secondDscr.innerHTML = ett.description;
+    secondLink.innerHTML = ett.link;
   } else if (results[1] == "tt") {
     secondTitle.innerHTML = "2. " + tt.title;
     secondDscr.innerHTML = tt.description;
+    secondLink.innerHTML = tt.link;
   } else {
     secondTitle.innerHTML = "2. " + tol.title;
     secondDscr.innerHTML = tol.description;
+    secondLink.innerHTML = tol.link;
   }
 
   if (results[2] == "ett") {
     thirdTitle.innerHTML = "3. " + ett.title;
     thirdDscr.innerHTML = ett.description;
+    thirdLink.innerHTML = ett.link;
   } else if (results[2] == "tt") {
     thirdTitle.innerHTML = "3. " + tt.title;
     thirdDscr.innerHTML = tt.description;
+    thirdLink.innerHTML = tt.link;
   } else {
     thirdTitle.innerHTML = "3. " + tol.title;
     thirdDscr.innerHTML = tol.description;
+    thirdLink.innerHTML = tol.link;
   }
 }
 
