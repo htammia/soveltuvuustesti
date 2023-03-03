@@ -416,6 +416,8 @@ backButton.addEventListener("click", () => {
   }
 })
 
+
+
 /*Changes the options background to purple when it is clicked */
 const options = document.querySelectorAll('.option');
 const lis = document.querySelectorAll('.options li');
@@ -426,15 +428,13 @@ for (let i = 0; i < options.length; i++) {
       lis[j].style.backgroundColor = '';
     }
     const selectedOption = document.querySelector('input[name="option"]:checked');
-    const selectedLi = selectedOption.parentNode;
-    selectedLi.style.backgroundColor = '#7A4FC7';
     disableNextButton(false);
   });
 }
 
 /*When clicking next-button, options background is returned to default in next question*/
 nextButton.addEventListener("click", function() {
-  lis.forEach(function(option) {
+  options.forEach(function(option) {
   option.style.backgroundColor = "";
   disableNextButton(true);
   });
