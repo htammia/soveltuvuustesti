@@ -84,53 +84,44 @@ function setTexts() {
     winner.innerHTML = ett.name;
     firstTitle.innerHTML = "1. " + ett.title;
     firstDscr.innerHTML = ett.description;
-    firstLink.innerHTML = ett.link;
     firstLink.setAttribute("href",ett.link);
   } else if (results[0] == "tt") {
     winner.innerHTML = tt.name;
     firstTitle.innerHTML = "1. " + tt.title;
     firstDscr.innerHTML = tt.description;
-    firstLink.innerHTML = tt.link;
     firstLink.setAttribute("href",tt.link);
   } else {
     winner.innerHTML = tol.name;
     firstTitle.innerHTML = "1. " + tol.title;
     firstDscr.innerHTML = tol.description;
-    firstLink.innerHTML = tol.link;
     firstLink.setAttribute("href",tol.link);
   }
 
   if (results[1] == "ett") {
     secondTitle.innerHTML = "2. " + ett.title;
     secondDscr.innerHTML = ett.description;
-    secondLink.innerHTML = ett.link;
     secondLink.setAttribute("href",ett.link);
   } else if (results[1] == "tt") {
     secondTitle.innerHTML = "2. " + tt.title;
     secondDscr.innerHTML = tt.description;
-    secondLink.innerHTML = tt.link;
     secondLink.setAttribute("href",tt.link);
   } else {
     secondTitle.innerHTML = "2. " + tol.title;
     secondDscr.innerHTML = tol.description;
-    secondLink.innerHTML = tol.link;
     secondLink.setAttribute("href",tol.link);
   }
 
   if (results[2] == "ett") {
     thirdTitle.innerHTML = "3. " + ett.title;
     thirdDscr.innerHTML = ett.description;
-    thirdLink.innerHTML = ett.link;
     thirdLink.setAttribute("href",ett.link);
   } else if (results[2] == "tt") {
     thirdTitle.innerHTML = "3. " + tt.title;
     thirdDscr.innerHTML = tt.description;
-    thirdLink.innerHTML = tt.link;
     thirdLink.setAttribute("href",tt.link);
   } else {
     thirdTitle.innerHTML = "3. " + tol.title;
     thirdDscr.innerHTML = tol.description;
-    thirdLink.innerHTML = tol.link;
     thirdLink.setAttribute("href",tol.link);
   }
 }
