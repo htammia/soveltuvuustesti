@@ -406,12 +406,15 @@ nextButton.addEventListener("click", () => {
 })
 
 backButton.addEventListener("click", () => {
-  if(currentQuestion > 0){
+  if (currentQuestion == questionData.length-1) {
+    nextButton.innerHTML = "Seuraava";
+  }
+  if (currentQuestion > 0) {
     currentQuestion--;
     document.getElementById("progressBar").value =(currentQuestion / questionData.length) * 100;
     loadQuestion();
-  }
-  else{
+  } 
+  else {
     document.location = "index.html";
   }
 })
