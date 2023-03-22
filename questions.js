@@ -305,6 +305,12 @@ function unSelectAll() {
   });
 }
 
+/**
+ * Laskee pisteet kullekin tutkinto-ohjelmalle
+ * Luo objektitaulukon resultOrder, jossa 
+ * tutkintokohtaiset pisteet sekä sijoitus.
+ * @returns resultOrder
+ */
 function calculateResults() {
   let resultOrder;
 
@@ -353,29 +359,37 @@ function calculateResults() {
         points.TOL++;
       }
     }
-
-    resultOrder = [
-      {
-        points: points.TOL,
-        name: "tol"
-      }, 
-      {
-        points: points.TT,
-        name: "tt"
-      }, 
-      {
-        points: points.ETT,
-        name: "ett"
-      }
-    ];
-    resultOrder.sort((a,b) => {
-      return b.points - a.points;
-    });
   }
 
-  console.log("POINTS: ett: " + points.ETT);
-  console.log("POINTS: tol: " + points.TOL);
-  console.log("POINTS: tt: " + points.TT);
+  resultOrder = [
+    {
+      points: points.TOL,
+      rank: 1,
+      name: "tol"
+    }, 
+    {
+      points: points.TT,
+      rank: 1,
+      name: "tt"
+    }, 
+    {
+      points: points.ETT,
+      rank: 1,
+      name: "ett"
+    }
+  ];
+
+  resultOrder.sort((a,b) => {
+    return b.points - a.points;
+  });
+
+  if (resultOrder[0].points > resultOrder[1].points){
+    resultOrder[1].rank++;
+    resultOrder[2].rank++;
+  }
+  if (resultOrder[1].points > resultOrder [2].points) {
+    resultOrder[2].rank++;
+  }
 
   console.log(resultOrder);
 
@@ -398,8 +412,9 @@ nextButton.addEventListener("click", () => {
     } else if (currentQuestion < questionData.length) {
       loadQuestion();
     } else {
-      const results = calculateResults();
-      const str = `results.html?st=${results[0].name}&nd=${results[1].name}&rd=${results[2].name}`
+      const res = calculateResults();
+      const str = `results.html?1=${res[0].name}&${res[1].rank}=${res[1].name}&${res[2].rank}=${res[2].name}`
+      console.log(str);
       window.location=str;
     }
   }
