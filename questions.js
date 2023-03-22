@@ -360,40 +360,6 @@ function calculateResults() {
       }
     }
   }
-
-  resultOrder = [
-    {
-      points: points.TOL,
-      rank: 1,
-      name: "tol"
-    }, 
-    {
-      points: points.TT,
-      rank: 1,
-      name: "tt"
-    }, 
-    {
-      points: points.ETT,
-      rank: 1,
-      name: "ett"
-    }
-  ];
-
-  resultOrder.sort((a,b) => {
-    return b.points - a.points;
-  });
-
-  if (resultOrder[0].points > resultOrder[1].points){
-    resultOrder[1].rank++;
-    resultOrder[2].rank++;
-  }
-  if (resultOrder[1].points > resultOrder [2].points) {
-    resultOrder[2].rank++;
-  }
-
-  console.log(resultOrder);
-
-  return resultOrder;
 }
 
 nextButton.addEventListener("click", () => {
@@ -412,8 +378,8 @@ nextButton.addEventListener("click", () => {
     } else if (currentQuestion < questionData.length) {
       loadQuestion();
     } else {
-      const res = calculateResults();
-      const str = `results.html?1=${res[0].name}&${res[1].rank}=${res[1].name}&${res[2].rank}=${res[2].name}`
+      calculateResults();
+      const str = `results.html?tol=${points.TOL}&tt=${points.TT}&ett=${points.ETT}`
       console.log(str);
       window.location=str;
     }

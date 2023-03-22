@@ -1,6 +1,6 @@
 
 ett = {
-    name: "ELEKTRONIIKAN JA TIETOLIIKENNETEKNIIKAN TUTKINTO-OHJELMA",
+    name: "ELEKTRONIIKAN JA TIETOLIIKENNETEKNIIKAN",
     title: "Elektroniikka ja tietoliikennetekniikka",
     description: "Muuta maailmaa suunnittelemalla kestäviä ja vastuullisia"
       + " elektroniikkalaitteita ja tietoliikenneratkaisuja,  jotka vaikuttavat ihmisten "
@@ -21,7 +21,7 @@ ett = {
       link: "https://www.oulu.fi/fi/hae/kandidaattiohjelmat/elektroniikka-ja-tietoliikennetekniikka"
 }
 tt = {
-    name: "TIETOTEKNIIKAN TUTKINTO-OHJELMA",
+    name: "TIETOTEKNIIKAN",
     title: "Tietotekniikka",
     description: "Muuta maailmaa kehittämällä uusia teknologioita edistämään kestävää kehitystä ja "
       + "ihmisten hyvinvointia. Tutkinto-ohjelmassa voit erikoistua kyberturvallisuuteen, "
@@ -43,7 +43,7 @@ tt = {
       link: "https://www.oulu.fi/fi/hae/kandidaattiohjelmat/tietotekniikka"
   }
 tol = {
-    name: "TIETOJENKÄSITTELYTIETEEN TUTKINTO-OHJELMA",
+    name: "TIETOJENKÄSITTELYTIETEEN",
     title: "Tietojenkäsittelytiede",
     description: "Vaikuta osaamisellasi siihen, millaiseksi maailma muuttuu "
       + "digitalisaation edetessä. Tietojenkäsittelytieteen asiantuntijana "
@@ -77,62 +77,82 @@ const thirdDscr = document.getElementById("third-description");
 const thirdLink = document.getElementById("third-link");
 
 const results = getOrder();
-setTexts();
+setRank();
 
-function setTexts() {
-  if (results[0] == "ett") {
-    winner.innerHTML = ett.name;
-    firstTitle.innerHTML = "1. " + ett.title;
-    firstDscr.innerHTML = ett.description;
-    firstLink.setAttribute("href",ett.link);
-  } else if (results[0] == "tt") {
-    winner.innerHTML = tt.name;
-    firstTitle.innerHTML = "1. " + tt.title;
-    firstDscr.innerHTML = tt.description;
-    firstLink.setAttribute("href",tt.link);
+function setRank() {
+
+  let st = getTutkinto(results[0].name);
+  let nd = getTutkinto(results[1].name);
+  let rd = getTutkinto(results[2].name);
+
+  firstTitle.innerHTML = "1. "  + st.title;
+  firstDscr.innerHTML = st.description;
+  firstLink.setAttribute("href", st.link);
+
+  secondDscr.innerHTML = nd.description;
+  secondLink.setAttribute("href", nd.link);
+
+  thirdDscr.innerHTML = rd.description;
+  thirdLink.setAttribute("href", rd.link);
+
+  if (parseInt(results[0].points) > parseInt(results[1].points)) {
+
+    winner.innerHTML = st.name + " TUTKINTO-OHJELMA";
+    secondTitle.innerHTML = "2. " + nd.title;
+    if (parseInt(results[1].points) > parseInt(results[2].points)) {
+      thirdTitle.innerHTML = "3. " + rd.title; 
+    } else {
+      thirdTitle.innerHTML = "2. " + rd.title; 
+    }
+   
+  } else if (results[0].points == results[1].points && parseInt(results[1].points) > parseInt(results[2].points)) {
+    winner.innerHTML = st.name + " JA " + nd.name + " TUTKINTO-OHJELMAT"; 
+    secondTitle.innerHTML = "1. " + nd.title;
+    thirdTitle.innerHTML = "2. " + rd.title; 
+
   } else {
-    winner.innerHTML = tol.name;
-    firstTitle.innerHTML = "1. " + tol.title;
-    firstDscr.innerHTML = tol.description;
-    firstLink.setAttribute("href",tol.link);
+    winner.innerHTML = "KAIKKI TUTKINTO-OHJELMAT";
+    secondTitle.innerHTML = "1. " + nd.title;
+    thirdTitle.innerHTML = "1. " + rd.title; 
   }
-
-  if (results[1] == "ett") {
-    secondTitle.innerHTML = "2. " + ett.title;
-    secondDscr.innerHTML = ett.description;
-    secondLink.setAttribute("href",ett.link);
-  } else if (results[1] == "tt") {
-    secondTitle.innerHTML = "2. " + tt.title;
-    secondDscr.innerHTML = tt.description;
-    secondLink.setAttribute("href",tt.link);
+}
+function getTutkinto(abbrv) {
+  if (abbrv == "ett") {
+    return ett;
+  } else if (abbrv == "tt") {
+    return tt;
   } else {
-    secondTitle.innerHTML = "2. " + tol.title;
-    secondDscr.innerHTML = tol.description;
-    secondLink.setAttribute("href",tol.link);
-  }
-
-  if (results[2] == "ett") {
-    thirdTitle.innerHTML = "3. " + ett.title;
-    thirdDscr.innerHTML = ett.description;
-    thirdLink.setAttribute("href",ett.link);
-  } else if (results[2] == "tt") {
-    thirdTitle.innerHTML = "3. " + tt.title;
-    thirdDscr.innerHTML = tt.description;
-    thirdLink.setAttribute("href",tt.link);
-  } else {
-    thirdTitle.innerHTML = "3. " + tol.title;
-    thirdDscr.innerHTML = tol.description;
-    thirdLink.setAttribute("href",tol.link);
+    return tol;
   }
 }
 
 function getOrder() {
-  let order = [];
   const query = window.location.search;
   const urlParams = new URLSearchParams(query);
-  order[0] = urlParams.get("st");
-  order[1] = urlParams.get("nd");
-  order[2] = urlParams.get("rd");
 
-  return order;
+  let results = [
+    {
+      name: "tol",
+      points: 0
+    },
+    {
+      name: "tt",
+      points: 0
+    },
+    {
+      name: "ett",
+      points: 0
+    }
+  ];
+
+  results[0].points = urlParams.get("tol");
+  results[1].points = urlParams.get("tt");
+  results[2].points = urlParams.get("ett");
+  
+  results.sort((a,b) => {
+    return b.points - a.points;
+  });
+
+  console.log(results);
+  return results;
 }
