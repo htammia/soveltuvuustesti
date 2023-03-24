@@ -36,7 +36,7 @@ header {
     font-size: clamp(1rem, 1rem + 4vw, 3rem);
     line-height: 30px;
     text-align: center;
-    
+    margin-top: -40px;
     left: 50%;
     width: 90%;
     padding: 10px;
@@ -59,12 +59,13 @@ header {
     border-radius: 8px;
     background-color: #F4F3F6;
     display: flex;
-   
+    margin: 0 auto;
     max-width: 960px;
     max-height: 300px;
-    width: 80%;
-    margin: 10px auto 0;
+    
     padding: 10px;
+    width: 90%;
+    margin-top: -40px;
 }
 .isonappi { /*esim. Indexin Aloita-nappi*/
     background-color:#7A4FC7; 
@@ -81,7 +82,8 @@ header {
     height: 60px;
     cursor: pointer;
     transition: 0.15s;
-    padding-left: 0px;
+    width: clamp(10rem, 5rem + 20vw, 16.5rem);
+    margin: 5px;
 }
 
 .isonappi:hover {
