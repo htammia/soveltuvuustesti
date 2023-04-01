@@ -74,7 +74,6 @@ header {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
-    font-style: italic;
     font-weight: 700;
     line-height: 20px;
     border-radius: 8px;
@@ -185,6 +184,7 @@ label {
     font-size: 20px;
     text-align: center;
     margin-top: clamp(1rem, 5vw, 3rem);
+    margin-bottom: 0;
 }
 
 .question-container {
@@ -218,6 +218,6 @@ ul {
     display: flex;
     justify-content: center;
     width: clamp(10rem, rem + 20vw, 20rem);
-    margin-top: clamp(1rem, 5vw, 3rem);
+    margin-top: clamp(0rem, 5vw, 3rem);
     
 }
