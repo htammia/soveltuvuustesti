@@ -1,6 +1,8 @@
 
 body {
     background-image:  url("images/backswirl.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     
 }
 
