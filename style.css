@@ -13,11 +13,11 @@ header {
 
 .logo {
         
-        width: clamp(3rem, 1rem + 10vw, 5rem); /* you can use % */
-        height: auto;
-        display: block;
-        margin: auto;
-        padding: 20px;
+    width: clamp(3rem, 1rem + 10vw, 5rem); /* you can use % */
+    height: auto;
+    display: block;
+    margin: auto;
+    padding: 20px;
     
 }
 
