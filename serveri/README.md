@@ -1,3 +1,5 @@
+# LOL ELÄ TEE NÄIN, kirjotan uusiksi kunhan selvitän lopukki muuttujat. Näin toimittas jos oltas alottamassa mutta tää ei ihan toimi ku ollaan jo lopussa.
+
 # Ohjeet serverin set-uppaamiseen
 ## Virtual Environment / Virtuaaliympäristö
 ### 1. Navigoi Command Promptilla siihen kansioon, missä serverin haluat asustavan. 
