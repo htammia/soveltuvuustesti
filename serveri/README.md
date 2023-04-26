@@ -45,7 +45,7 @@ Nyt pitäisi näkyä jotain tällaista:
 ![image](https://user-images.githubusercontent.com/94059323/234489210-35f4776b-4976-4d3e-9a1c-1014c01504f6.png)
 Pääset siis käsiksi "webbisivuun" osoitteessa http://127.0.0.1:5000 (ainakin minulla, katso mitä itselläsi lukee). Tuossa osoitteessa ei tällä hetkellä majaile mitään, joten tuloksena on 404 not foundin ei kannata antaa säikäyttää. Ctrl+c lopettaa serverin pyörittämisen. Huomaathan, että jos teet muutoksia serverikoodiin, ei muutokset näy ennen kuin serveri käynnistetään uudelleen.
 
-## Seuraavat työstö kerrat
+## Seuraavat työkerrat
 ### 1. Navigoi kansioon
 Tämä ei eroa ensimmäisestä kerrasta lainkaan. `cd kansio\kansio\kohde` kunnes olet serveri-kansiossa.
 ### 2. Virtuaaliympäristön aktivointi
