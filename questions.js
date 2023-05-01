@@ -253,6 +253,7 @@ const nextButton = document.getElementById("next");
 //the index of the current question visible
 let currentQuestion = 0;
 let userChoices = [];
+let trackInfoQuestion = false;
 
 const points = {
   TT:0,
@@ -433,3 +434,19 @@ backButton.addEventListener("click", function() {
 });
 
 disableNextButton(true);
+
+const trackInfo = document.getElementById("trackInfo");
+const trackYes = document.getElementById("trackYes");
+const trackNo = document.getElementById("trackNo");
+
+trackYes.addEventListener("click", () => {
+    trackInfoQuestion = true;
+    trackInfo.style.display = "none";
+})
+
+trackNo.addEventListener("click", () => {
+    trackInfoQuestion = false;
+    trackInfo.style.display = "none";
+})
+
+trackInfo.style.display = "block";
