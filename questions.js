@@ -261,6 +261,11 @@ const points = {
   TOL:0
 };
 
+//variables for data collection
+let times = [];
+let totalTime = 0;
+let testTaken = 0;
+
 function disableNextButton(disable) {
     if (disable == true) {
         nextButton.disabled = true;
@@ -308,12 +313,8 @@ function unSelectAll() {
 
 /**
  * Laskee pisteet kullekin tutkinto-ohjelmalle
- * Luo objektitaulukon resultOrder, jossa 
- * tutkintokohtaiset pisteet sekä sijoitus.
- * @returns resultOrder
  */
 function calculateResults() {
-  let resultOrder;
 
   for (let i = 0; i < userChoices.length; i++) {
     if (userChoices[i] == "a") {
@@ -435,6 +436,9 @@ backButton.addEventListener("click", function() {
 
 disableNextButton(true);
 
+
+/* FOR DATA USAGE PERMISSIONS */
+
 const trackInfo = document.getElementById("trackInfo");
 const trackYes = document.getElementById("trackYes");
 const trackNo = document.getElementById("trackNo");
@@ -450,3 +454,36 @@ trackNo.addEventListener("click", () => {
 })
 
 trackInfo.style.display = "block";
+
+
+/* SENDING DATA TO THE SERVER */
+
+// based on https://www.freecodecamp.org/news/javascript-post-request-how-to-send-an-http-post-request-in-js/
+function sendInfo() {
+
+  try {
+      fetch("http://127.0.0.1:5000/visit/save", {
+          method: "POST",
+          body: JSON.stringify({
+              q1: times[0],
+              q2: times[1],
+              q3: times[2],
+              q4: times[3],
+              q5: times[4],
+              q6: times[5],
+              q7: times[6],
+              q8: times[7],
+              total: totalTime,
+              taken: testTaken
+          }),
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+          })
+          .then((response) => response.json())
+          .then((json) => console.log(json))
+  } catch(err) {
+      alert(err);
+  }
+
+}
