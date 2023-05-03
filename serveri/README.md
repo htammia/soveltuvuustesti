@@ -25,6 +25,7 @@ jsonschema <br>
 click <br>
 flask <br>
 flask_sqlalchemy <br>
+flask_cors <br>
 Asennetaan nyt siis pipillä nämä paketit. 
 ```
 pip install jsonschema click flask flask_alchemy
