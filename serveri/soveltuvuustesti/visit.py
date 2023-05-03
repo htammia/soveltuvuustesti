@@ -1,11 +1,13 @@
 from flask import Blueprint, request
 from jsonschema import validate, ValidationError
 from sqlalchemy.exc import IntegrityError
+from flask_cors import CORS
 
 from soveltuvuustesti.db import db
 from soveltuvuustesti.models import UserVisit
 
 bp = Blueprint("visit", __name__, url_prefix="/visit")
+CORS(bp)
 
 @bp.route("/save", methods=["POST"])
 def save():
