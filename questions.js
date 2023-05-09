@@ -265,6 +265,8 @@ const points = {
 let times = [];
 let totalTime = 0;
 let testTaken = 0;
+let testStartTime = 0;
+let questionStartTime = 0;
 
 function disableNextButton(disable) {
     if (disable == true) {
@@ -369,6 +371,13 @@ nextButton.addEventListener("click", () => {
   //check if an option was chosen
   if (answer) {
     userChoices[currentQuestion] = answer;
+
+    if (trackInfoQuestion == true) {
+      if (times[currentQuestion] == null)
+          times[currentQuestion] = 0;
+        times [currentQuestion] += Date.now() - questionStartTime;
+        questionStartTime = Date.now();
+    }
     
     //increment to next question
     currentQuestion++;
@@ -380,7 +389,14 @@ nextButton.addEventListener("click", () => {
     } else if (currentQuestion < questionData.length) {
       loadQuestion();
     } else {
+      if (trackInfoQuestion == true)
+        totalTime = Date.now() - testStartTime;
+        
       calculateResults();
+
+      if (trackInfoQuestion == true)
+        sendInfo();
+
       const str = `results.html?tol=${points.TOL}&tt=${points.TT}&ett=${points.ETT}`
       console.log(str);
       window.location=str;
@@ -389,6 +405,13 @@ nextButton.addEventListener("click", () => {
 })
 
 backButton.addEventListener("click", () => {
+  
+  if (trackInfoQuestion == true) {
+    if (times[currentQuestion] == null)
+        times[currentQuestion] = 0;
+      times [currentQuestion] += Date.now() - questionStartTime;
+      questionStartTime = Date.now();
+  }
   if (currentQuestion == questionData.length-1) {
     nextButton.innerHTML = "Seuraava";
   }
@@ -446,6 +469,7 @@ const trackNo = document.getElementById("trackNo");
 trackYes.addEventListener("click", () => {
     trackInfoQuestion = true;
     trackInfo.style.display = "none";
+    testStartTime = questionStartTime = Date.now();
 })
 
 trackNo.addEventListener("click", () => {
@@ -453,7 +477,7 @@ trackNo.addEventListener("click", () => {
     trackInfo.style.display = "none";
 })
 
-trackInfo.style.display = "block";
+trackInfo.style.display = "block";
 
 
 /* SENDING DATA TO THE SERVER */
