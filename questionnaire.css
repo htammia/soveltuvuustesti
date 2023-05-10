@@ -189,6 +189,10 @@ ul {
     background-color: white;
 }
 
+.modal-body h5 {
+    font-weight: 100;
+}
+
 .modal-footer {
     display: flex;
     padding: 15px;
