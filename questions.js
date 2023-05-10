@@ -266,6 +266,7 @@ let times = [];
 let totalTime = 0;
 let testStartTime = 0;
 let questionStartTime = 0;
+let testTaken = 0;
 
 function getCookie() {
   
@@ -277,18 +278,26 @@ function getCookie() {
   return "";
 }
 
-let testTaken = getCookie();
-
-if (testTaken == ""){
-  const d = new Date();
-  d.setTime(d.getTime() + (365*24*60*60*1000));
-  let expires = "expires="+ d.toUTCString();
-  document.cookie = "testTaken = 0;" + expires + ";path=/";
+function setCookie(){
+  if (testTaken == ""){
+    console.log("setting cookie")
+    const d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = "testTaken = 0;" + expires + ";path=/";
+  }
 }
+
+//getting the cookie
+testTaken = getCookie();
+//if there is no cookie, one is set
+if (testTaken == ""){
+  setCookie();
+}
+
 testTaken = parseInt(testTaken)
 
 if (Number.isNaN(testTaken)){
-  console.log("hei")
   testTaken = 0;
 }
 console.log("tests taken : " + testTaken);
@@ -421,11 +430,12 @@ nextButton.addEventListener("click", () => {
     } else if (currentQuestion < questionData.length) {
       loadQuestion();
     } else {
-      if (trackInfoQuestion == true)
+      if (trackInfoQuestion == true) {
         totalTime = Date.now() - testStartTime;
         testTaken = testTaken + 1;
         updateCookie();
-        
+      }
+
       calculateResults();
       
       if (trackInfoQuestion == true)
