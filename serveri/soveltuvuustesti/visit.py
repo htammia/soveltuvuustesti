@@ -22,6 +22,9 @@ def save():
         except ValidationError as e:
             print(e)
             return {"[ERROR]": "Invalid JSON"}, 400
+        except:
+            print(e)
+            return {"[ERROR]": "Your request could not be processed"}, 400
         
         #create new visit
         visit = UserVisit(
