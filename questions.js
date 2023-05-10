@@ -434,8 +434,6 @@ nextButton.addEventListener("click", () => {
       const str = `results.html?tol=${points.TOL}&tt=${points.TT}&ett=${points.ETT}`
       console.log(str);
       window.location=str;
-
-      
       
     }
   }
@@ -461,7 +459,6 @@ backButton.addEventListener("click", () => {
     document.location = "index.html";
   }
 })
-
 
 
 /*Changes the options background to purple when it is clicked */
