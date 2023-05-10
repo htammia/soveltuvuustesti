@@ -264,9 +264,41 @@ const points = {
 //variables for data collection
 let times = [];
 let totalTime = 0;
-let testTaken = 0;
 let testStartTime = 0;
 let questionStartTime = 0;
+
+function getCookie() {
+  
+  let cookie = document.cookie;
+  let splitCookie = cookie.split('=');
+  if (splitCookie[0]=="testTaken") {
+    return splitCookie[1];
+  }
+  return "";
+}
+
+let testTaken = getCookie();
+
+if (testTaken == ""){
+  const d = new Date();
+  d.setTime(d.getTime() + (365*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = "testTaken = 0;" + expires + ";path=/";
+}
+testTaken = parseInt(testTaken)
+
+if (Number.isNaN(testTaken)){
+  console.log("hei")
+  testTaken = 0;
+}
+console.log("tests taken : " + testTaken);
+
+function updateCookie() {
+  const d = new Date();
+  d.setTime(d.getTime() + (365*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = "testTaken =" + testTaken + ";" + expires + ";path=/";
+}
 
 function disableNextButton(disable) {
     if (disable == true) {
@@ -391,15 +423,20 @@ nextButton.addEventListener("click", () => {
     } else {
       if (trackInfoQuestion == true)
         totalTime = Date.now() - testStartTime;
+        testTaken = testTaken + 1;
+        updateCookie();
         
       calculateResults();
-
+      
       if (trackInfoQuestion == true)
         sendInfo();
 
       const str = `results.html?tol=${points.TOL}&tt=${points.TT}&ett=${points.ETT}`
       console.log(str);
       window.location=str;
+
+      
+      
     }
   }
 })
