@@ -268,45 +268,60 @@ let testStartTime = 0;
 let questionStartTime = 0;
 let testTaken = 0;
 
-function getCookie() {
-  
-  let cookie = document.cookie;
-  let splitCookie = cookie.split('=');
-  if (splitCookie[0]=="testTaken") {
-    return splitCookie[1];
+/* COOKIES */
+
+//function for getting the value of a named cookie
+//if no cookie exists, returns ""
+function getCookie(cookieName) {
+  let name = cookieName + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let cookieArray = decodedCookie.split(';');
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    let c = cookieArray[i];
+    while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+        return parseInt(c.substring(name.length, c.length));
+    }
   }
   return "";
 }
 
-function setCookie(){
-  if (testTaken == ""){
-    console.log("setting cookie")
-    const d = new Date();
-    d.setTime(d.getTime() + (365*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
-    document.cookie = "testTaken = 0;" + expires + ";path=/";
-  }
-}
-
-//getting the cookie
-testTaken = getCookie();
-//if there is no cookie, one is set
-if (testTaken == ""){
-  setCookie();
-}
-
-testTaken = parseInt(testTaken)
-
-if (Number.isNaN(testTaken)){
-  testTaken = 0;
-}
-console.log("tests taken : " + testTaken);
-
-function updateCookie() {
+//function for setting a specific cookie and its value
+function setCookie(cookieName, cookieValue) {
   const d = new Date();
   d.setTime(d.getTime() + (365*24*60*60*1000));
   let expires = "expires="+ d.toUTCString();
-  document.cookie = "testTaken =" + testTaken + ";" + expires + ";path=/";
+  document.cookie = cookieName + "=" + cookieValue + ";" + expires;
+}
+
+//function for checking the value of testTaken cookie
+function checkTestTakenCookie() {
+  let testCookie = getCookie("taken");
+  if (testCookie == "") {
+      setCookie("taken", 0);
+  } else {
+      testTaken = testCookie;
+  }
+}
+
+//function for setting all of the cookies
+//adds one to the current value of testTaken
+function setAllCookies() {
+  setCookie("allowed", trackInfoQuestion)
+  setCookie("sent", "false");
+  setCookie("q1", times[0]);
+  setCookie("q2", times[1]);
+  setCookie("q3", times[2]);
+  setCookie("q4", times[3]);
+  setCookie("q5", times[4]);
+  setCookie("q6", times[5]);
+  setCookie("q7", times[6]);
+  setCookie("q8", times[7]);
+  setCookie("total", totalTime);
+  setCookie("taken", testTaken+1);
 }
 
 function disableNextButton(disable) {
@@ -413,7 +428,7 @@ nextButton.addEventListener("click", () => {
   if (answer) {
     userChoices[currentQuestion] = answer;
 
-    if (trackInfoQuestion == true) {
+    if (trackInfoQuestion) {
       if (times[currentQuestion] == null)
           times[currentQuestion] = 0;
         times [currentQuestion] += Date.now() - questionStartTime;
@@ -430,17 +445,16 @@ nextButton.addEventListener("click", () => {
     } else if (currentQuestion < questionData.length) {
       loadQuestion();
     } else {
-      if (trackInfoQuestion == true) {
+      if (trackInfoQuestion) {
         totalTime = Date.now() - testStartTime;
-        testTaken = testTaken + 1;
-        updateCookie();
+        checkTestTakenCookie();
+        setAllCookies();
+      } else {
+        setCookie("allowed", false);
       }
 
       calculateResults();
-      
-      if (trackInfoQuestion == true)
-        sendInfo();
-
+        
       const str = `results.html?tol=${points.TOL}&tt=${points.TT}&ett=${points.ETT}`
       console.log(str);
       window.location=str;
@@ -522,36 +536,3 @@ trackNo.addEventListener("click", () => {
 })
 
 trackInfo.style.display = "block";
-
-
-/* SENDING DATA TO THE SERVER */
-
-// based on https://www.freecodecamp.org/news/javascript-post-request-how-to-send-an-http-post-request-in-js/
-function sendInfo() {
-
-  try {
-      fetch("http://127.0.0.1:5000/visit/save", {
-          method: "POST",
-          body: JSON.stringify({
-              q1: times[0],
-              q2: times[1],
-              q3: times[2],
-              q4: times[3],
-              q5: times[4],
-              q6: times[5],
-              q7: times[6],
-              q8: times[7],
-              total: totalTime,
-              taken: testTaken
-          }),
-          headers: {
-              "Content-type": "application/json; charset=UTF-8"
-          }
-          })
-          .then((response) => response.json())
-          .then((json) => console.log(json))
-  } catch(err) {
-      alert(err);
-  }
-
-}
