@@ -179,14 +179,14 @@ ul {
 
 .modal-header {
     padding: 2px 16px;
-    color: white;
+    color: #F4F3F6;
     border-radius: 8px;
     background-color: rgba(0,0,0,0);
 }
 
 .modal-body {
     padding: 2px 16px;
-    background-color: white;
+    background-color: #F4F3F6;
 }
 
 .modal-body h5 {
@@ -196,6 +196,6 @@ ul {
 .modal-footer {
     display: flex;
     padding: 15px;
-    background-color: white;
+    background-color: #F4F3F6;
     border-radius: 0px 0px 8px 8px;
 }
