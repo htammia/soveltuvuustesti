@@ -1,3 +1,17 @@
+/**
+ * Tässä javascript-tiedostossa on toteutettu kaikki Questionnaire-sivun 
+ * toiminnalisuus. Tiedoston muoto on seuraava:
+ * - Kysymysdata
+ * - Pistemäärittely
+ * - HTML-elementtien linkkaus
+ * - Cookiet/keksit
+ */
+
+/* --- KYSYMYSDATA --- */
+/*
+Kysymysdata. Kysymyksissä, joissa on vain kolme vaihtoehtoa,
+tulee d-vaihtoehdon kohdalle asettaa "none".
+*/
 const questionData = [
   {
     question: "Haluan opiskella alaa, jossa työllistyn alalle heti valmistumisen jälkeen.", 
@@ -57,6 +71,13 @@ const questionData = [
   }
 ];
 
+/**
+ * Muuttujassa on joka kysymyksen kohdalle asetettu true/false
+ * arvo, joka vastaa kysymykseen "saako tietotekniikan tutkinto-
+ * ohjelma pisteen käyttäjän valitessa vaihtoehto". 
+ * Puuttuvien d-vaihtoehtojen kohdalla arvolla ei ole väliä,
+ * mutta jatkuvuuden kannalta niiden arvoksi on määrätty false.
+ */
 const pointsToTT = [
   {
     //question 1
@@ -116,6 +137,13 @@ const pointsToTT = [
   }
 ];
 
+/**
+ * Muuttujassa on joka kysymyksen kohdalle asetettu true/false
+ * arvo, joka vastaa kysymykseen "saako elektroniikan ja
+ * tietoliikennetekniikan tutkinto-ohjelma pisteen käyttäjän valitessa vaihtoehto". 
+ * Puuttuvien d-vaihtoehtojen kohdalla arvolla ei ole väliä,
+ * mutta jatkuvuuden kannalta niiden arvoksi on määrätty false.
+ */
 const pointsToETT = [
 {
     //question 1
@@ -175,6 +203,13 @@ const pointsToETT = [
   }
 ];
 
+/**
+ * Muuttujassa on joka kysymyksen kohdalle asetettu true/false
+ * arvo, joka vastaa kysymykseen "saako tietojenkäsittelytieteen 
+ * tutkinto- ohjelma pisteen käyttäjän valitessa vaihtoehto". 
+ * Puuttuvien d-vaihtoehtojen kohdalla arvolla ei ole väliä,
+ * mutta jatkuvuuden kannalta niiden arvoksi on määrätty false.
+ */
 const pointsToTOL = [
   {
     //question 1
@@ -234,6 +269,8 @@ const pointsToTOL = [
   }
 ];
 
+/* --- HTML-ELEMENTTIEN LINKITTÄMINEN --- */
+
 /* linking the HTML elements to variables */
 const progressText = document.getElementById("progressText");
 const questionnaire = document.getElementById("questions");
@@ -250,28 +287,44 @@ const d_text = document.getElementById("d_text");
 const backButton = document.getElementById("back");
 const nextButton = document.getElementById("next");
 
-//the index of the current question visible
+/* --- "GLOBAL" MUUTTUJAT --- */
+
+// nykyisen kysymyksen indeksi
 let currentQuestion = 0;
+// taulukko, johon käyttäjän valinnat kerätään
 let userChoices = [];
+// muuttuja, johon tallennetaan käyttäjän vastaus
+// tiedon tallentamista koskevaan kysymykseen.
 let trackInfoQuestion = false;
 
+// muuttujaan kerätään käyttäjän saamat pisteet
+// kuhunkin tutkinto-ohjelmaan.
 const points = {
   TT:0,
   ETT:0,
   TOL:0
 };
 
-//variables for data collection
+/* --- COOKIES --- */
+
+// tiedonkeruuseen tarvittavat muuttujat
+// kuhunkin kysymykseen vastaamiseen käytetty aika
 let times = [];
+// testin tekoon käytetty aika kokonaisuudessaan
 let totalTime = 0;
+// testin aloitusaika
 let testStartTime = 0;
+// kysymyksen aloitusaika
 let questionStartTime = 0;
+// testin toistokerrat
 let testTaken = 0;
 
-/* COOKIES */
-
-//function for getting the value of a named cookie
-//if no cookie exists, returns ""
+/**
+ * Funktio hakee cookieNamen mukaisen keksin.
+ * @param {string} cookieName 
+ * @returns "" jos keksiä ei löytynyt
+ * @returns keksi, jos löytyi
+ */
 function getCookie(cookieName) {
   let name = cookieName + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -289,7 +342,12 @@ function getCookie(cookieName) {
   return "";
 }
 
-//function for setting a specific cookie and its value
+/**
+ * Funktio asettaa keksin. 
+ * Jos nimellä on jo keksi, funktio päivittää sen arvon.
+ * @param {*} cookieName 
+ * @param {*} cookieValue 
+ */
 function setCookie(cookieName, cookieValue) {
   const d = new Date();
   d.setTime(d.getTime() + (365*24*60*60*1000));
@@ -297,7 +355,12 @@ function setCookie(cookieName, cookieValue) {
   document.cookie = cookieName + "=" + cookieValue + ";" + expires;
 }
 
-//function for checking the value of testTaken cookie
+/**
+ * Funktio tarkistaa, onko "taken" keksiä olemassa,
+ * jos ei, asettaa arvoksi nolla.
+ * Jos on, asettaa keksin arvon muuttujaan
+ * testTaken.
+ */
 function checkTestTakenCookie() {
   let testCookie = getCookie("taken");
   if (testCookie == "") {
@@ -307,8 +370,10 @@ function checkTestTakenCookie() {
   }
 }
 
-//function for setting all of the cookies
-//adds one to the current value of testTaken
+/**
+ * Asettaa kaikki keksit.
+ * Inkrementoi testin suorituskertoja yhdellä.
+ */
 function setAllCookies() {
   setCookie("allowed", trackInfoQuestion)
   setCookie("sent", "false");
@@ -324,6 +389,13 @@ function setAllCookies() {
   setCookie("taken", testTaken+1);
 }
 
+/**
+ * Tekee Seuraava-napista klikattamattoman,
+ * jos nappi oli aiemmin klikattavissa.
+ * Jos valmiiksi pois käytöstä, palauttaa
+ * klikattavuuden.
+ * @param {boolean} disable 
+ */
 function disableNextButton(disable) {
     if (disable == true) {
         nextButton.disabled = true;
@@ -335,8 +407,12 @@ function disableNextButton(disable) {
     }
 }
 
+// ladataan kysymykset sivulle.
 loadQuestion();
 
+/**
+ * Lataa / päivittää sivulla näkyvät kysymykset.
+ */
 function loadQuestion() {
   console.log(currentQuestion + " / " + questionData.length);
   unSelectAll();
@@ -353,20 +429,32 @@ function loadQuestion() {
   }
 }
 
+/**
+ * Hakee käyttäjän valinnan.
+ * @returns käyttäjän valitseman vastauksen id
+ */
 function getSelected() {
   let answer;
   optionElements.forEach(function (optionElem){
     if (optionElem.checked) {
       answer = optionElem.id;
-    }
+      disableNextButton(false)
+    } else {
+      disableNextButton(true)
+    }    
   });
   return answer
 }
 
+/**
+ * Poistaa käyttäjän valinnan. Käytetään
+ * siirryttäessä seuraavaan kysymykseen.
+ */
 function unSelectAll() {
   optionElements.forEach(function (optionElem){
     optionElem.checked = false
   });
+  disableNextButton(true);
 }
 
 /**
@@ -422,10 +510,16 @@ function calculateResults() {
   }
 }
 
+/* --- EVENT LISTENERIT --- */
+
+/**
+ * Lisää event listenerin Seuraava-nappiin
+ */
 nextButton.addEventListener("click", () => {
   const answer = getSelected();
-  //check if an option was chosen
+  // tarkistetaan, onko käyttäjä valinnut jonkin vaihtoehdon.
   if (answer) {
+    disableNextButton(false);
     userChoices[currentQuestion] = answer;
 
     if (trackInfoQuestion) {
@@ -435,10 +529,12 @@ nextButton.addEventListener("click", () => {
         questionStartTime = Date.now();
     }
     
-    //increment to next question
+    // inkrementoidaan seuraavaan kysymykseen
     currentQuestion++;
+    // päivitetään edistymispalkki
     document.getElementById("progressBar").value =(currentQuestion / questionData.length) * 100;
-    //check if more questions remain
+    // tarkistetaan, onko kysymyksiä jäljellä.
+    // toiseksi viimeisessä kysymyksessä 
     if (currentQuestion == questionData.length-1 ) {
       nextButton.innerHTML = "Tuloksiin!";
       loadQuestion();
@@ -463,14 +559,20 @@ nextButton.addEventListener("click", () => {
   }
 })
 
+/**
+ * Lisää event listener takaisin-nappiin.
+ */
 backButton.addEventListener("click", () => {
   
+  // datan tallennus, jos tallennus sallittu
   if (trackInfoQuestion == true) {
     if (times[currentQuestion] == null)
         times[currentQuestion] = 0;
       times [currentQuestion] += Date.now() - questionStartTime;
       questionStartTime = Date.now();
   }
+  // jos siirrytään viimeisestä kysymyksestä taakse
+  // päin, päivitetään Seuraava-napin teksti
   if (currentQuestion == questionData.length-1) {
     nextButton.innerHTML = "Seuraava";
   }
@@ -479,41 +581,22 @@ backButton.addEventListener("click", () => {
     document.getElementById("progressBar").value =(currentQuestion / questionData.length) * 100;
     loadQuestion();
   } 
+  // jos palataan yli "nollannen" kysymyksen, palataan indeksiin.
   else {
     document.location = "index.html";
   }
 })
 
-
-/*Changes the options background to purple when it is clicked */
+/**
+ * Event listenerit vastausvaihtoehtoihin.
+ */
 const options = document.querySelectorAll('.option');
-const lis = document.querySelectorAll('.options li');
 
 for (let i = 0; i < options.length; i++) {
   options[i].addEventListener('click', function() {
-    for (let j = 0; j < lis.length; j++) {
-      lis[j].style.backgroundColor = '';
-    }
-    const selectedOption = document.querySelector('input[name="option"]:checked');
     disableNextButton(false);
   });
 }
-
-/*When clicking next-button, options background is returned to default in next question*/
-nextButton.addEventListener("click", function() {
-  options.forEach(function(option) {
-  option.style.backgroundColor = "";
-  disableNextButton(true);
-  });
-});
-
-/*When clicking back-button, options background is returned to default in previous question*/
-backButton.addEventListener("click", function() {
-  lis.forEach(function(option) {
-  option.style.backgroundColor = "";
-  disableNextButton(true);
-  });
-});
 
 disableNextButton(true);
 
