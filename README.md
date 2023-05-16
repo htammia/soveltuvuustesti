@@ -15,6 +15,7 @@ Käyttöliittymäkoodiin kuuluu kaikki juurikansiossa oleva koodi lukuunottamatt
   ![image](https://github.com/htammia/soveltuvuustesti/assets/94059323/dd33445a-fabc-4067-b7c3-5f1045a5715d)
 - `style.css` yleistä graafista muotoilua.
 <br>
+
 ### Serveri
 Serverikansion sisältä löytyy ohjeet serverin työstämiseen ja ajamiseen kehitysvaiheessa. Soveltuvuustesti-kansiosta löytyy neljä kooditiedostoa. Serveri vaatii toimiakseen muutamia pakkauksia (packages), jotka on listattu serverikansiosta löytyvässä ReadMe.md tiedostossa. Readme.md sisältää myös ohjeet tietokantatiedoston luomiseen – mahdollisesta hostauspalvelusta riippuen voi olla, että tietokanta.db on luotava manuaalisesti tietokoneella. Tähänkin on ohje serverikansion Readme.mdssä.
 - `__init__.py` on serverin "etusivu". Tällä koodilla luodaan serveriapplikaatio, sekä tietokantayhteys.
