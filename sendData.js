@@ -1,14 +1,22 @@
-
-/* SENDING DATA TO THE SERVER */
+/* --- TIEDON LÄHETTÄMINEN SERVERILLE --- */
 checkCookie();
 
+/**
+ * Tarkistaa, onko keksit sallittu ja
+ * onko tiedot lähetetty jo serverille, missä tapauksessa
+ * ei tehdä mitään.
+ */
 function checkCookie() {
     if (getCookie("allowed") == "true" && getCookie("sent") == "false") {
         sendInfo()
         setCookie("sent", true);
     }
 }
-
+/**
+ * Lähetetään tiedot serverille.
+ * Serverin osoite on muutettavissa!! Localhost-osoite
+ * vaatii luonnollisesti local hostin käyttöä.
+ */
 // based on https://www.freecodecamp.org/news/javascript-post-request-how-to-send-an-http-post-request-in-js/
 function sendInfo() {
 
@@ -38,8 +46,12 @@ function sendInfo() {
     }
   
   }
-  //function for getting the value of a named cookie
-  //if no cookie exists, returns ""
+/**
+ * Funktio hakee cookieNamen mukaisen keksin.
+ * @param {string} cookieName 
+ * @returns "" jos keksiä ei löytynyt
+ * @returns keksi, jos löytyi
+ */
   function getCookie(cookieName) {
     let name = cookieName + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -61,7 +73,12 @@ function sendInfo() {
     return "";
   }
 
-  //function for setting a specific cookie and its value
+/**
+ * Funktio asettaa keksin. 
+ * Jos nimellä on jo keksi, funktio päivittää sen arvon.
+ * @param {*} cookieName 
+ * @param {*} cookieValue 
+ */
 function setCookie(cookieName, cookieValue) {
     const d = new Date();
     d.setTime(d.getTime() + (365*24*60*60*1000));

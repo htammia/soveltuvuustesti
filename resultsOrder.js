@@ -1,4 +1,9 @@
+/**
+ * Tämä Javascript tiedosto toteuttaa vastausten järjestämisen
+ * oikeaan järjestykseen pisteiden perusteella.
+ */
 
+// Elektroniikan ja tietoliikennetekniikan tiedot
 ett = {
     name: "ELEKTRONIIKAN JA TIETOLIIKENNETEKNIIKAN",
     title: "Elektroniikka ja tietoliikennetekniikka",
@@ -20,6 +25,8 @@ ett = {
       + "elektroniikan ja tietoliikennetekniikan tutkinto-ohjelmassa",
       link: "https://www.oulu.fi/fi/hae/kandidaattiohjelmat/elektroniikka-ja-tietoliikennetekniikka"
 }
+
+// Tietotekniikan tiedot
 tt = {
     name: "TIETOTEKNIIKAN",
     title: "Tietotekniikka",
@@ -42,6 +49,7 @@ tt = {
       + "opiskelu Tietotekniikan tutkinto-ohjelmassa.",
       link: "https://www.oulu.fi/fi/hae/kandidaattiohjelmat/tietotekniikka"
   }
+// Tietojenkäsittelytieteen tiedot
 tol = {
     name: "TIETOJENKÄSITTELYTIETEEN",
     title: "Tietojenkäsittelytiede",
@@ -64,7 +72,7 @@ tol = {
       link: "https://www.oulu.fi/fi/hae/kandidaattiohjelmat/tietojenkasittelytiede"
   }
 
-//linking the html elements
+// HTML -elementtien linkkaus
 const winner = document.getElementById("winner-title")
 const firstTitle = document.getElementById("first-title");
 const firstDscr = document.getElementById("first-description");
@@ -79,12 +87,17 @@ const thirdLink = document.getElementById("third-link");
 const results = getOrder();
 setRank();
 
+/**
+ * Asettaa tutkinnon järjestykseen
+ * ja vastaavat tekstit paikoillensa.
+ */
 function setRank() {
 
   let st = getTutkinto(results[0].name);
   let nd = getTutkinto(results[1].name);
   let rd = getTutkinto(results[2].name);
 
+  // asetetaan "voittajan" tekstit ja tittelit
   firstTitle.innerHTML = "1. "  + st.title;
   firstDscr.innerHTML = st.description;
   firstLink.setAttribute("href", st.link);
@@ -95,6 +108,7 @@ function setRank() {
   thirdDscr.innerHTML = rd.description;
   thirdLink.setAttribute("href", rd.link);
 
+  // kun testituloksista löytyy voittaja, seuraava on kakkonen.
   if (parseInt(results[0].points) > parseInt(results[1].points)) {
 
     winner.innerHTML = st.name + " TUTKINTO-OHJELMA";
@@ -104,18 +118,27 @@ function setRank() {
     } else {
       thirdTitle.innerHTML = "2. " + rd.title; 
     }
-   
+  // jos 1. ja 2. sijalla on saman verran pisteitä, molemmat saavat
+  // järjestysnumeroksi yksi. Kolmas saa luvun 2.
   } else if (results[0].points == results[1].points && parseInt(results[1].points) > parseInt(results[2].points)) {
     winner.innerHTML = st.name + " JA " + nd.name + " TUTKINTO-OHJELMAT"; 
     secondTitle.innerHTML = "1. " + nd.title;
     thirdTitle.innerHTML = "2. " + rd.title; 
 
+  // mahdollista on myös saada kaikki tutkinnot samalle sijalle
   } else {
     winner.innerHTML = "KAIKKI TUTKINTO-OHJELMAT";
     secondTitle.innerHTML = "1. " + nd.title;
     thirdTitle.innerHTML = "1. " + rd.title; 
   }
 }
+/**
+ * Apufunktio palauttaa annetun
+ * lyhenteen mukaisen tutkinnon tiedot
+ * muuttujassa.
+ * @param {string} abbrv 
+ * @returns tutkintomuuttuja
+ */
 function getTutkinto(abbrv) {
   if (abbrv == "ett") {
     return ett;
@@ -126,6 +149,11 @@ function getTutkinto(abbrv) {
   }
 }
 
+/**
+ * Hakee järjestyksen query-stringistä ja
+ * asettaa tutkinnot pisteiden mukaiseen järjestykseen.
+ * @returns järjestetyt tulokset.
+ */
 function getOrder() {
   const query = window.location.search;
   const urlParams = new URLSearchParams(query);

@@ -1,10 +1,6 @@
 /**
  * Tässä javascript-tiedostossa on toteutettu kaikki Questionnaire-sivun 
- * toiminnalisuus. Tiedoston muoto on seuraava:
- * - Kysymysdata
- * - Pistemäärittely
- * - HTML-elementtien linkkaus
- * - Cookiet/keksit
+ * toiminnalisuus.
  */
 
 /* --- KYSYMYSDATA --- */
