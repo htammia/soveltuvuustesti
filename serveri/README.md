@@ -28,7 +28,7 @@ flask_sqlalchemy <br>
 flask_cors <br>
 Asennetaan nyt siis pipillä nämä paketit. 
 ```
-pip install jsonschema click flask flask_alchemy
+pip install jsonschema click flask flask_alchemy flask_cors
 ```
 Voit myös asentaa paketit yksitellen jos tuntuu turvallisemmalta.
 ### 5. Tietokannan alustaminen
